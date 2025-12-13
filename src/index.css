@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #193a3c;
+  --color-secondary: #d5e6ab;
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a {
+    color: var(--color-primary);
+  }
+}
+
+@layer components {
+  .nav-btn {
+    @apply px-3 py-1
+      rounded-md
+      cursor-pointer
+      text-[var(--color-secondary)]
+      hover:bg-[var(--color-secondary)]
+      hover:text-[var(--color-primary)]
+      transition;
+  }
+}
