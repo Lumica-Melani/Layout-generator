@@ -30,13 +30,32 @@
 }
 
 @layer components {
-  .nav-btn {
-    @apply px-3 py-1
+  .nav-link {
+    @apply inline-flex items-center
+      px-3 py-1
       rounded-md
       cursor-pointer
+      font-medium
       text-[var(--color-secondary)]
-      hover:bg-[var(--color-secondary)]
-      hover:text-[var(--color-primary)]
+      transition-colors;
+  }
+
+  .nav-link:hover {
+    @apply bg-[var(--color-secondary)] text-[var(--color-primary)];
+  }
+
+  .nav-link-active {
+    @apply bg-[var(--color-secondary)]
+           text-[var(--color-primary)]
+           shadow-[0_0_10px_rgba(213,230,171,0.8)];
+  }
+
+  .cta-link {
+    @apply inline-flex items-center gap-1
+      mt-4
+      font-semibold
+      text-[var(--color-primary)]
+      hover:underline
       transition;
   }
 }
