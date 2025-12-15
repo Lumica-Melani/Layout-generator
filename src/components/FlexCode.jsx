@@ -15,6 +15,7 @@ export default function FlexCode({ config }) {
     borderColor,
     boxSizing,
     shadow,
+    styled,
   } = config;
 
   const cellCount = count;
@@ -53,25 +54,28 @@ export default function FlexCode({ config }) {
           justifyContent,
           alignContent,
           width: "100%",
-          minHeight: "300px",
+          minHeight: "900px",
         }}
       >
         {cells.map((_, index) => (
           <div
             key={index}
+            className="flex-item"
             style={{
-              padding: `${padding}px`,
+              padding: styled ? `${padding}px` : "0",
               width: `${itemWidth}px`,
               height: `${itemHeight}px`,
-              backgroundColor: bgColor,
+              backgroundColor: styled ? bgColor : "transparent",
               color: "#d5e6ab",
-              border: border ? `${borderColor}` : "none",
-              borderRadius: `${borderRadius}px`,
-              boxShadow: shadow ? "0 0 15px rgba(213,230,171,0.6)" : "none",
+              border: styled && border ? `${borderColor}` : "none",
+              borderRadius: styled ? `${borderRadius}px` : "0",
+              boxShadow:
+                styled && shadow ? "0 0 15px rgba(213,230,171,0.6)" : "none",
               boxSizing: `${boxSizing}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
             }}
           >
             {index + 1}

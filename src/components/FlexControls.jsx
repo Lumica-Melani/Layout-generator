@@ -1,12 +1,25 @@
-export default function FlexControls({ controls, onChange, onGenerate }) {
+export default function FlexControls({
+  controls,
+  onChange,
+  onGenerate,
+  onCountBlur,
+  styled,
+  onToggleStyled,
+  warning,
+}) {
   return (
     <div>
       <input
         type="number"
+        min={1}
+        max={20}
         value={controls.count}
         onChange={(e) => onChange("count", e.target.value)}
+        onBlur={onCountBlur}
         placeholder="Enter number of elements"
       />
+      {warning && <p className="text-sm text-yellow-500 mt-2">⚠️ {warning}</p>}
+
       <select
         value={controls.flexDirection}
         onChange={(e) => onChange("flexDirection", e.target.value)}
@@ -61,6 +74,28 @@ export default function FlexControls({ controls, onChange, onGenerate }) {
         <option value="space-around">space-around</option>
         <option value="space-evenly">space-evenly</option>
       </select>
+
+      <div className="flex items-center gap-3 mt-4">
+        <span className="text-sm opacity-70">Styles</span>
+
+        <button
+          onClick={onToggleStyled}
+          className={`
+      w-12 h-6 rounded-full
+      flex items-center
+      transition-all duration-300
+      ${styled ? "bg-[#193a3c]" : "bg-gray-400"}
+    `}
+        >
+          <span
+            className={`
+        w-5 h-5 bg-white rounded-full
+        transition-all duration-300
+        ${styled ? "translate-x-6" : "translate-x-1"}
+      `}
+          />
+        </button>
+      </div>
 
       <select
         value={controls.alignContent}

@@ -59,3 +59,9 @@
       transition;
   }
 }
+
+.flex-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(213, 230, 171, 0.8);
+  cursor: pointer;
+}

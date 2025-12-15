@@ -26,11 +26,35 @@ function FlexGenerator() {
 
   const [flexConfig, setFlexConfig] = useState(null);
 
+  const [warning, setWarning] = useState("");
+
   function updateControls(name, value) {
     setFlexControls((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    if (name === "count") {
+      if (Number(value) > 20) {
+        setWarning("Large number of items may affect preview clarity");
+      } else if (Number(value) > 5) {
+        setWarning(
+          "Large number of items without wrap may affect preview clarity"
+        );
+      } else {
+        setWarning("");
+      }
+    }
+  }
+
+  function handleBlur() {
+    setWarning("");
+  }
+
+  const [styled, setStyled] = useState(true);
+
+  function toggleStyled() {
+    setStyled((prev) => !prev);
   }
 
   function handleGenerate() {
@@ -56,8 +80,12 @@ function FlexGenerator() {
     <>
       <FlexControls
         controls={flexcontrols}
+        warning={warning}
         onChange={updateControls}
         onGenerate={handleGenerate}
+        onCountBlur={handleBlur}
+        styled={styled}
+        onToggleStyled={toggleStyled}
       />
       {flexConfig && <FlexCode config={flexConfig} />}
     </>
