@@ -11,8 +11,8 @@ function GridGenerator() {
     itemWidth: "",
     itemHeight: "",
 
-    justifyContent: "start",
-    alignContent: "start",
+    justifyContent: "",
+    alignContent: "",
 
     padding: 8,
     bgColor: "#193a3c",
