@@ -10,6 +10,9 @@ export default function GridCode({ config }) {
     padding,
     bgColor,
     border,
+    borderRadius,
+    borderColor,
+    boxSizing,
     shadow,
   } = config;
 
@@ -20,17 +23,18 @@ export default function GridCode({ config }) {
 .grid {
   display: grid;
   grid-template-columns: repeat(${cols}, ${itemWidth}px);
+  grid-template-rows: repeat(${rows}, ${itemHeight}px);
   gap: ${gap}px;
   justify-content: ${justifyContent};
   align-content: ${alignContent};
 }
 
 .grid-item {
-  width: ${itemWidth}px;
-  height: ${itemHeight}px;
   padding: ${padding}px;
   background-color: ${bgColor};
-  ${border ? "border: 1px solid #193A3C;" : ""}
+  ${border ? `border:Co${borderColor};` : ""}
+  border-radius: ${borderRadius}px;
+  box-sizing: ${boxSizing};
   ${shadow ? "box-shadow: 0 4px 10px rgba(0,0,0,0.15);" : ""}
 }
 `.trim();
@@ -40,8 +44,10 @@ export default function GridCode({ config }) {
       {/* Grid Preview */}
       <div
         style={{
+          height: "800px",
           display: "grid",
           gridTemplateColumns: `repeat(${cols}, ${itemWidth}px)`,
+          gridTemplateRows: `repeat(${rows}, ${itemHeight}px)`,
           gap: `${gap}px`,
           justifyContent,
           alignContent,
@@ -51,12 +57,13 @@ export default function GridCode({ config }) {
           <div
             key={index}
             style={{
-              width: `${itemWidth}px`,
-              height: `${itemHeight}px`,
               padding: `${padding}px`,
               backgroundColor: bgColor,
-              border: border ? "1px solid #193A3C" : "none",
-              boxShadow: shadow ? "0 4px 10px rgba(0,0,0,0.15)" : "none",
+              color: "#d5e6ab",
+              border: border ? `${borderColor}` : "none",
+              borderRadius: `${borderRadius}px`,
+              boxShadow: shadow ? "0 0 15px rgba(213,230,171,0.6)" : "none",
+              boxSizing: `${boxSizing}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

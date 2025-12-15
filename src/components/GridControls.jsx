@@ -26,6 +26,12 @@ export default function GridControls({ controls, onChange, onGenerate }) {
         onChange={(e) => onChange("itemHeight", e.target.value)}
         placeholder="Item height (px)"
       />
+      <input
+        type="number"
+        value={controls.borderRadius}
+        onChange={(e) => onChange("borderRadius", e.target.value)}
+        placeholder="Border radius"
+      />
 
       <select
         value={controls.justifyContent}

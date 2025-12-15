@@ -8,16 +8,19 @@ function GridGenerator() {
     cols: "",
     gap: 8,
 
-    itemWidth: 100,
-    itemHeight: 100,
+    itemWidth: "",
+    itemHeight: "",
 
     justifyContent: "start",
     alignContent: "start",
 
     padding: 8,
-    bgColor: "#D5E6AB",
+    bgColor: "#193a3c",
     border: true,
-    shadow: false,
+    borderColor: "2px solid rgba(213,230,171,0.6)",
+    borderRadius: 0,
+    boxSizing: "border-box",
+    shadow: true,
   });
 
   const [gridConfig, setGridConfig] = useState(null);
@@ -35,12 +38,15 @@ function GridGenerator() {
       cols: Number(controls.cols),
       gap: controls.gap,
       padding: controls.padding,
-      itemWidth: controls.itemWidtht,
-      itemHeight: controls.itemHeight,
+      itemWidth: Number(controls.itemWidth),
+      itemHeight: Number(controls.itemHeight),
       justifyContent: controls.justifyContent,
       alignContent: controls.alignContent,
       bgColor: controls.bgColor,
       border: controls.border,
+      borderColor: controls.borderColor,
+      boxSizing: controls.boxSizing,
+      borderRadius: controls.borderRadius,
       shadow: controls.shadow,
     });
   }
