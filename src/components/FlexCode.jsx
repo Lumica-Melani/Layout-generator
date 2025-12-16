@@ -1,4 +1,6 @@
-export default function FlexCode({ config }) {
+import { useState } from "react";
+
+export default function FlexCode({ controls }) {
   const {
     count,
     flexDirection,
@@ -16,10 +18,19 @@ export default function FlexCode({ config }) {
     boxSizing,
     shadow,
     styled,
-  } = config;
+  } = controls;
 
-  const cellCount = count;
-  const cells = Array.from({ length: cellCount });
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(cssCode);
+    setCopied(true);
+
+    setTimeout(() => setCopied(false), 1500);
+  }
+
+  const checkCount = Number(count) || 0;
+  const cells = Array.from({ length: checkCount });
 
   const cssCode = `
 .flex {
@@ -31,20 +42,23 @@ export default function FlexCode({ config }) {
 }
 
 .flex-item {
-  padding: ${padding}px;
-  width: ${itemWidth}px;
-  height: ${itemHeight}px;
-  background-color: ${bgColor};
-  ${border ? `border: ${borderColor};` : ""}
-  border-radius: ${borderRadius}px;
-  box-sizing: ${boxSizing};
-  ${shadow ? "box-shadow: 0 4px 10px rgba(0,0,0,0.15);" : ""}
+   ${styled ? `padding: ${padding}px;` : "padding: 4px;"}
+   ${styled ? `width: ${itemWidth}px;` : "width: 50px;"}
+   ${styled ? `height: ${itemHeight}px;` : "height: 100px;"}
+   ${
+     styled ? `background-color: ${bgColor};` : "background-color: transperent;"
+   }
+   ${
+     styled ? `border: ${borderColor};` : "border: 1px dashed rgba(0,0,0,0.25);"
+   }
+   ${styled ? `border-radius:${borderRadius}px;` : "border-radius: 0px;"}
+   box-sizing: ${boxSizing};
+   ${shadow ? "box-shadow: 0 4px 10px rgba(0,0,0,0.15);" : ""}
 }
 `.trim();
 
   return (
     <section className="mt-8 space-y-6">
-      {/* Grid Preview */}
       <div
         style={{
           display: "flex",
@@ -60,14 +74,17 @@ export default function FlexCode({ config }) {
         {cells.map((_, index) => (
           <div
             key={index}
-            className="flex-item"
+            className="flex-grid-item"
             style={{
-              padding: styled ? `${padding}px` : "0",
-              width: `${itemWidth}px`,
-              height: `${itemHeight}px`,
+              padding: styled ? `${padding}px` : "4px",
+              width: styled ? `${itemWidth}px` : "50px",
+              height: styled ? `${itemHeight}px` : "100px",
               backgroundColor: styled ? bgColor : "transparent",
-              color: "#d5e6ab",
-              border: styled && border ? `${borderColor}` : "none",
+              color: styled ? "#d5e6ab" : "#555",
+              border:
+                styled && border
+                  ? `${borderColor}`
+                  : "1px dashed rgba(0,0,0,0.25)",
               borderRadius: styled ? `${borderRadius}px` : "0",
               boxShadow:
                 styled && shadow ? "0 0 15px rgba(213,230,171,0.6)" : "none",
@@ -85,6 +102,18 @@ export default function FlexCode({ config }) {
 
       {/* CSS Output */}
       <pre className="bg-gray-100 p-4 rounded overflow-x-auto text-sm">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm opacity-70">Generated CSS</span>
+
+          <button
+            onClick={handleCopy}
+            className="text-sm px-3 py-1 rounded-md
+               bg-[#193a3c] text-[#d5e6ab]
+               hover:opacity-90 transition"
+          >
+            {copied ? "Copied!" : "Copy"}
+          </button>
+        </div>
         {cssCode}
       </pre>
     </section>

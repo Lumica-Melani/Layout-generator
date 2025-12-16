@@ -1,7 +1,7 @@
 export default function FlexControls({
   controls,
   onChange,
-  onGenerate,
+
   onCountBlur,
   styled,
   onToggleStyled,
@@ -108,8 +108,6 @@ export default function FlexControls({
         <option value="space-around">space-around</option>
         <option value="space-evenly">space-evenly</option>
       </select>
-
-      <button onClick={onGenerate}>Generate</button>
     </div>
   );
 }

@@ -23,8 +23,6 @@ function GridGenerator() {
     shadow: true,
   });
 
-  const [gridConfig, setGridConfig] = useState(null);
-
   function updateControls(name, value) {
     setControls((prev) => ({
       ...prev,
@@ -32,23 +30,10 @@ function GridGenerator() {
     }));
   }
 
-  function handleGenerate() {
-    setGridConfig({
-      rows: Number(controls.rows),
-      cols: Number(controls.cols),
-      gap: controls.gap,
-      padding: controls.padding,
-      itemWidth: Number(controls.itemWidth),
-      itemHeight: Number(controls.itemHeight),
-      justifyContent: controls.justifyContent,
-      alignContent: controls.alignContent,
-      bgColor: controls.bgColor,
-      border: controls.border,
-      borderColor: controls.borderColor,
-      boxSizing: controls.boxSizing,
-      borderRadius: controls.borderRadius,
-      shadow: controls.shadow,
-    });
+  const [styled, setStyled] = useState(true);
+
+  function toggleStyled() {
+    setStyled((prev) => !prev);
   }
 
   return (
@@ -56,9 +41,10 @@ function GridGenerator() {
       <GridControls
         controls={controls}
         onChange={updateControls}
-        onGenerate={handleGenerate}
+        styled={styled}
+        onToggleStyled={toggleStyled}
       />
-      {gridConfig && <GridCode config={gridConfig} />}
+      <GridCode controls={{ controls, styled }} />
     </>
   );
 }

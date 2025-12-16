@@ -1,4 +1,9 @@
-export default function GridControls({ controls, onChange, onGenerate }) {
+export default function GridControls({
+  controls,
+  onChange,
+  styled,
+  onToggleStyled,
+}) {
   return (
     <div>
       <input
@@ -57,7 +62,27 @@ export default function GridControls({ controls, onChange, onGenerate }) {
         <option value="space-evenly">space-evenly</option>
       </select>
 
-      <button onClick={onGenerate}>Generate</button>
+      <div className="flex items-center gap-3 mt-4">
+        <span className="text-sm opacity-70">Styles</span>
+
+        <button
+          onClick={onToggleStyled}
+          className={`
+      w-12 h-6 rounded-full
+      flex items-center
+      transition-all duration-300
+      ${styled ? "bg-[#193a3c]" : "bg-gray-400"}
+    `}
+        >
+          <span
+            className={`
+        w-5 h-5 bg-white rounded-full
+        transition-all duration-300
+        ${styled ? "translate-x-6" : "translate-x-1"}
+      `}
+          />
+        </button>
+      </div>
     </div>
   );
 }

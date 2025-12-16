@@ -24,8 +24,6 @@ function FlexGenerator() {
     shadow: true,
   });
 
-  const [flexConfig, setFlexConfig] = useState(null);
-
   const [warning, setWarning] = useState("");
 
   function updateControls(name, value) {
@@ -57,37 +55,17 @@ function FlexGenerator() {
     setStyled((prev) => !prev);
   }
 
-  function handleGenerate() {
-    setFlexConfig({
-      count: flexcontrols.count,
-      flexDirection: flexcontrols.flexDirection,
-      flexWrap: flexcontrols.flexWrap,
-      gap: flexcontrols.gap,
-      padding: flexcontrols.padding,
-      itemWidth: Number(flexcontrols.itemWidth),
-      itemHeight: Number(flexcontrols.itemHeight),
-      justifyContent: flexcontrols.justifyContent,
-      alignContent: flexcontrols.alignContent,
-      bgColor: flexcontrols.bgColor,
-      border: flexcontrols.border,
-      borderColor: flexcontrols.borderColor,
-      boxSizing: flexcontrols.boxSizing,
-      borderRadius: flexcontrols.borderRadius,
-      shadow: flexcontrols.shadow,
-    });
-  }
   return (
     <>
       <FlexControls
         controls={flexcontrols}
         warning={warning}
         onChange={updateControls}
-        onGenerate={handleGenerate}
         onCountBlur={handleBlur}
         styled={styled}
         onToggleStyled={toggleStyled}
       />
-      {flexConfig && <FlexCode config={flexConfig} />}
+      <FlexCode controls={{ ...flexcontrols, styled }} />
     </>
   );
 }
