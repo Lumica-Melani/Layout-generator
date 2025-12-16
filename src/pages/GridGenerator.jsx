@@ -36,6 +36,38 @@ function GridGenerator() {
     setStyled((prev) => !prev);
   }
 
+  const GRID_PRESETS = {
+    centered: {
+      justifyContent: "center",
+      alignContent: "center",
+      gap: 16,
+    },
+
+    spaced: {
+      justifyContent: "space-between",
+      alignContent: "center",
+      gap: 24,
+    },
+
+    cards: {
+      justifyContent: "start",
+      alignContent: "start",
+      gap: 20,
+      itemWidth: 180,
+      itemHeight: 120,
+    },
+  };
+
+  function applyPreset(presetKey) {
+    const preset = GRID_PRESETS[presetKey];
+    if (!preset) return;
+
+    setControls((prev) => ({
+      ...prev,
+      ...preset,
+    }));
+  }
+
   return (
     <>
       <GridControls
@@ -43,8 +75,9 @@ function GridGenerator() {
         onChange={updateControls}
         styled={styled}
         onToggleStyled={toggleStyled}
+        onApplyPreset={applyPreset}
       />
-      <GridCode controls={{ controls, styled }} />
+      <GridCode controls={{ ...controls, styled }} />
     </>
   );
 }

@@ -3,6 +3,7 @@ export default function GridControls({
   onChange,
   styled,
   onToggleStyled,
+  onApplyPreset,
 }) {
   return (
     <div>
@@ -83,6 +84,16 @@ export default function GridControls({
           />
         </button>
       </div>
+
+      <select
+        onChange={(e) => onApplyPreset(e.target.value)}
+        className="mt-4 p-2 rounded border"
+      >
+        <option value="">Choose preset</option>
+        <option value="centered">Centered</option>
+        <option value="spaced">Space Between</option>
+        <option value="cards">Card Layout</option>
+      </select>
     </div>
   );
 }

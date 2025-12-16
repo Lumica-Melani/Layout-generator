@@ -55,6 +55,38 @@ function FlexGenerator() {
     setStyled((prev) => !prev);
   }
 
+  const FLEX_PRESETS = {
+    centered: {
+      justifyContent: "center",
+      alignContent: "center",
+      gap: 16,
+    },
+
+    spaced: {
+      justifyContent: "space-between",
+      alignContent: "center",
+      gap: 24,
+    },
+
+    cards: {
+      justifyContent: "start",
+      alignContent: "start",
+      gap: 20,
+      itemWidth: 180,
+      itemHeight: 120,
+    },
+  };
+
+  function applyPreset(presetKey) {
+    const preset = FLEX_PRESETS[presetKey];
+    if (!preset) return;
+
+    setFlexControls((prev) => ({
+      ...prev,
+      ...preset,
+    }));
+  }
+
   return (
     <>
       <FlexControls
@@ -64,6 +96,7 @@ function FlexGenerator() {
         onCountBlur={handleBlur}
         styled={styled}
         onToggleStyled={toggleStyled}
+        onApplyPreset={applyPreset}
       />
       <FlexCode controls={{ ...flexcontrols, styled }} />
     </>

@@ -1,11 +1,11 @@
 export default function FlexControls({
   controls,
   onChange,
-
   onCountBlur,
   styled,
   onToggleStyled,
   warning,
+  onApplyPreset,
 }) {
   return (
     <div>
@@ -107,6 +107,15 @@ export default function FlexControls({
         <option value="space-between">space-between</option>
         <option value="space-around">space-around</option>
         <option value="space-evenly">space-evenly</option>
+      </select>
+      <select
+        onChange={(e) => onApplyPreset(e.target.value)}
+        className="mt-4 p-2 rounded border"
+      >
+        <option value="">Choose preset</option>
+        <option value="centered">Centered</option>
+        <option value="spaced">Space Between</option>
+        <option value="cards">Card Layout</option>
       </select>
     </div>
   );
