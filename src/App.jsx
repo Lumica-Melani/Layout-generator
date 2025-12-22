@@ -4,26 +4,31 @@ import GridGenerator from "./pages/GridGenerator";
 import FlexGenerator from "./pages/FlexGenerator";
 import Layout from "./components/Layout";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "grid",
+          element: <GridGenerator />,
+        },
+        {
+          path: "flex",
+          element: <FlexGenerator />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "grid",
-        element: <GridGenerator />,
-      },
-      {
-        path: "flex",
-        element: <FlexGenerator />,
-      },
-    ],
-  },
-]);
+    basename: "/Layout-generator",
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;
