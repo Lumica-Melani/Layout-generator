@@ -113,4 +113,4 @@ This project was built with an emphasis on:
 
 ---
 
-Happy Learning! 💪
+Happy Learning!
