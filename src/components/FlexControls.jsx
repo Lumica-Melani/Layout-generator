@@ -39,6 +39,7 @@ export default function FlexControls({
           onChange={(e) => onChange("flexDirection", e.target.value)}
           className="control-select"
         >
+          <option value="disabled">Flex Direction</option>
           <option value="row">row</option>
           <option value="column">column</option>
         </select>
@@ -48,6 +49,7 @@ export default function FlexControls({
           onChange={(e) => onChange("flexWrap", e.target.value)}
           className="control-select"
         >
+          <option value="disabled">Flex Wrap</option>
           <option value="wrap">wrap</option>
           <option value="nowrap">nowrap</option>
           <option value="wrap-reverse">wrap-reverse</option>
@@ -96,6 +98,7 @@ export default function FlexControls({
           onChange={(e) => onChange("justifyContent", e.target.value)}
           className="control-select"
         >
+          <option value="disabled">Justify Content</option>
           <option value="start">start</option>
           <option value="center">center</option>
           <option value="end">end</option>
@@ -109,6 +112,7 @@ export default function FlexControls({
           onChange={(e) => onChange("alignContent", e.target.value)}
           className="control-select"
         >
+          <option value="disabled">Align Content</option>
           <option value="start">start</option>
           <option value="center">center</option>
           <option value="end">end</option>

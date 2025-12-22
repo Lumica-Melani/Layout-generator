@@ -7,10 +7,8 @@ export default function GridControls({
 }) {
   return (
     <div className="bg-[#0f1f22] text-[#d5e6ab] p-6 rounded-xl space-y-6 shadow-lg mt-4">
-      {/* Header */}
       <h2 className="text-lg font-semibold tracking-wide">Grid Controls</h2>
 
-      {/* Rows / Cols */}
       <div className="grid grid-cols-2 gap-4">
         <input
           type="number"
@@ -48,7 +46,6 @@ export default function GridControls({
         />
       </div>
 
-      {/* Border radius */}
       <input
         type="number"
         value={controls.borderRadius}
@@ -86,7 +83,6 @@ export default function GridControls({
         </select>
       </div>
 
-      {/* Styles toggle */}
       <div className="flex items-center justify-between pt-2">
         <span className="text-sm opacity-70">Styles</span>
 
@@ -103,7 +99,6 @@ export default function GridControls({
         </button>
       </div>
 
-      {/* Presets */}
       <select
         onChange={(e) => onApplyPreset(e.target.value)}
         className="control-select"

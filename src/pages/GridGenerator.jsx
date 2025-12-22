@@ -18,7 +18,7 @@ function GridGenerator() {
     bgColor: "#193a3c",
     border: true,
     borderColor: "2px solid rgba(213,230,171,0.6)",
-    borderRadius: 0,
+    borderRadius: "",
     boxSizing: "border-box",
     shadow: true,
   });
