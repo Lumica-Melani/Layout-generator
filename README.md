@@ -1,4 +1,4 @@
-# Flexbox Layout Generator
+# Layout Generator
 
 A visual, interactive **CSS Flexbox layout generator** built with React. This tool lets you experiment with Flexbox properties in real time and instantly see how layout changes affect your UI — no guesswork, no constant tab‑switching to docs.
 
